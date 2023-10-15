@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Animated Login Form</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-2">
+            <img src="background.jpg.jpg">
+        </div>
+        <div class="center">
+            <h1>Login</h1>
+            <form id="loginForm" action="#" method="post">
+                <div class="txt_field">
+                    <input type="email" id="emailInput" name="email" required>
+                    <label id="emailLabel">Email Address</label>
+                </div>
+                <div class="txt_field">
+                    <input type="tel" id="phoneInput" name="phone" required>
+                    <label id="phoneLabel">Phone Number</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" id="passwordInput" name="password" required>
+                    <label id="passwordLabel">Password</label>
+                    <div id="passwordError" class="error-message"></div>
+                </div>
+                <button type="submit" class="LoginBtn">Login</button>
+            </form>
+            <div class="signup_link">
+                Not a member? <a href="signup.html">Signup</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById("loginForm");
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordError = document.getElementById('passwordError');
+
+            loginForm.addEventListener("submit", async function(event) {
+                const emailInput = document.getElementById('emailInput');
+                const emailLabel = document.getElementById('emailLabel');
+                const phoneInput = document.getElementById('phoneInput');
+                const phoneLabel = document.getElementById('phoneLabel');
+
+                // Reset error messages
+                emailLabel.textContent = "Email Address";
+                phoneLabel.textContent = "Phone Number";
+                passwordError.textContent = "";
+
+                // Check if the input fields are empty
+                if (emailInput.value.trim() === "") {
+                    // Show the email label error and prevent form submission
+                    emailLabel.textContent = "Email Address is required.";
+                    event.preventDefault();
+                }
+
+                if (phoneInput.value.trim() === "") {
+                    // Show the phone label error and prevent form submission
+                    phoneLabel.textContent = "Phone Number is required.";
+                    event.preventDefault();
+                }
+
+                // Check if the password is less than 6 characters
+                if (passwordInput.value.trim().length < 6) {
+                    // Show an error message for password length and prevent form submission
+                    passwordError.textContent = "Password must be at least 6 characters long.";
+                    event.preventDefault();
+                    return;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

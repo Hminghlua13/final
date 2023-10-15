@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Registration</h1>
+        <form id="registrationForm" action="signup.php" method="post">
+            <div class="txt_field">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="txt_field">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="txt_field">
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+            </div>
+            <div class="txt_field">
+                <input type="password" id="passwordInput" name="password" placeholder="Password" required>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+            <button type="submit" id="signupButton">Sign Up</button>
+        </form>
+        <div class="login_link">
+            Already a member? <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <script>
+        // Get the signup button element
+        const signupButton = document.getElementById("signupButton");
+
+        // Add a click event listener to the signup button
+        signupButton.addEventListener("click", function (event) {
+            // Get the password input and error message elements
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordError = document.getElementById('passwordError');
+
+            // Check if the password is less than 6 characters
+            if (passwordInput.value.trim().length < 6) {
+                // Display an error message for password length
+                passwordError.textContent = "Password must be at least 6 characters long.";
+                event.preventDefault(); // Prevent form submission
+            } else {
+                // Clear the password error message if it's valid
+                passwordError.textContent = "";
+            }
+        });
+    </script>
+<div class="col-2">
+        <img src="background.jpg.jpg" alt="Background Image">
+    </div>
+</body>
+
+</html>
